@@ -17,11 +17,11 @@ class App extends Component {
             component={Login}
           /> 
           <Route to="/users"  component={Users}/>
-      {/*  <ProtectedRoute
-          path="/users"
-          redirectTo="/"
-          component={Users}
-        />  */}
+        <ProtectedRoute
+            path="/users"
+            redirectTo="/"
+            component={Users}
+          /> 
         </Switch>
       </div>
     );
