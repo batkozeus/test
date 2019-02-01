@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import LoginRoute from '../../components/LoginRoute';
 import ProtectedRoute from '../../components/ProtectedRoute';
 import Login from '../../pages/Login';
@@ -11,15 +11,17 @@ class App extends Component {
       <div className="App">
         <Switch>
           <LoginRoute
+            exact
             path="/"
             redirectTo="/users"
             component={Login}
           /> 
-         <ProtectedRoute
-            path="/users"
-            redirectTo="/"
-            component={Users}
-          /> 
+          <Route to="/users"  component={Users}/>
+      {/*  <ProtectedRoute
+          path="/users"
+          redirectTo="/"
+          component={Users}
+        />  */}
         </Switch>
       </div>
     );
