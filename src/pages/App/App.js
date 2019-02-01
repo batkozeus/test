@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch } from 'react-router-dom';
 import LoginRoute from '../../components/LoginRoute';
 import ProtectedRoute from '../../components/ProtectedRoute';
 import Login from '../../pages/Login';
@@ -16,8 +16,7 @@ class App extends Component {
             redirectTo="/users"
             component={Login}
           /> 
-          <Route to="/users"  component={Users}/>
-        <ProtectedRoute
+          <ProtectedRoute
             path="/users"
             redirectTo="/"
             component={Users}

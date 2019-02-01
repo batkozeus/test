@@ -45,7 +45,3 @@ export const actionTypes = {
   export const signOutRequest = () => ({
     type: actionTypes.SIGN_OUT_REQUEST
   });
-  
-  export const signOutSuccess = () => ({
-    type: actionTypes.SIGN_OUT_SUCCESS
-  });

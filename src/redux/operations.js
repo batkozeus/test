@@ -24,13 +24,13 @@ export const signUp = credentials => dispatch => {
       .catch(error => dispatch(signUpError(error)));
   };
 
-export const getUsers = credentials => dispatch => {
+export const getUsers = () => dispatch => {
   dispatch(getUsersRequest());
 
   axios
     .get('/api/users?page=2')
-    .then((data) => {
-      dispatch(getUsersSuccess(data));
+    .then((response) => {
+      dispatch(getUsersSuccess(response.data.data));
     })
     .catch(error => dispatch(getUsersError(error)));
 };

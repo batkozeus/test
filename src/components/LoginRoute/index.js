@@ -9,22 +9,18 @@ const LoginRoute = ({
   redirectTo = '/',
   isAuthenticated,
   ...rest
-}) => {
-  console.log('isAuthenticated: ', isAuthenticated)
-  console.log('redirectTo: ', redirectTo)
-  console.log('redirectTo: ', rest)
-  return (
-  <Route
-    {...rest}
-    render={props =>
-      !isAuthenticated ? (
-        <Component {...props} />
-      ) : (
-        <Redirect to={redirectTo}  />
-      )
-    }
-  />
-)};
+}) => (
+<Route
+  {...rest}
+  render={props =>
+    !isAuthenticated ? (
+      <Component {...props} />
+    ) : (
+      <Redirect to={redirectTo}  />
+    )
+  }
+/>
+);
 
 const mapState = state => ({
   isAuthenticated: state.isAuthenticated

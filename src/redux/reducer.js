@@ -1,13 +1,13 @@
 import { combineReducers } from 'redux';
 import { actionTypes } from './actions';
 
-const users = (state = null, { type, payload }) => {
+const users = (state = [], { type, payload }) => {
   switch (type) {
     case actionTypes.GET_USERS_SUCCESS:
       return payload;
 
     case actionTypes.GET_USERS_ERROR:
-      return null;
+      return [];
 
     default:
       return state;
@@ -20,7 +20,7 @@ const isAuthenticated = (state = false, { type }) => {
       return true;
 
     case actionTypes.SIGN_UP_ERROR:
-    case actionTypes.SIGN_OUT_SUCCESS:
+    case actionTypes.SIGN_OUT_REQUEST:
       return false;
 
     default:
