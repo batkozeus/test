@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import { reducer as formReducer } from 'redux-form'
 import { actionTypes } from './actions';
 
 const users = (state = [], { type, payload }) => {
@@ -30,5 +31,6 @@ const isAuthenticated = (state = false, { type }) => {
 
 export default combineReducers({
   users,
-  isAuthenticated
+  isAuthenticated,
+  form: formReducer
 });

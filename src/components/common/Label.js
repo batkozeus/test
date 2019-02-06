@@ -1,9 +1,8 @@
 import React from 'react';
 
-const Label = ({ text, children }) => (
+const Label = ({ text }) => (
   <label >
-    <span>{text}</span>
-    {children}
+    {text}
   </label>
 );
 

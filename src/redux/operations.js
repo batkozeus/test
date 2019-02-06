@@ -7,7 +7,6 @@ import {
   getUsersSuccess,
   getUsersError,
   signOutRequest,
-  signOutSuccess,
 } from './actions';
 
 axios.defaults.baseURL = 'https://reqres.in';

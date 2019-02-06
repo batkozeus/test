@@ -1,65 +1,66 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
+import { Field, reduxForm } from 'redux-form'
 import * as operations from '../../redux/operations';
 import Form from '../common/Form';
-import Input from '../common/Input';
-import Label from '../common/Label';
+import FormField from '../common/FormField';
 import Button from '../common/Button';
 
-const INITIAL_STATE = {  email: '', password: '' };
+const validate = values => {
+    const errors = {}
+    if (!values.email) {
+        errors.email = 'Required'
+    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+        errors.email = 'Invalid email address'
+    }
+    if (!values.password) {
+        errors.password = 'Required'
+    } else if (values.password.length > 15) {
+        errors.password = 'Must be 15 characters or less'
+    } else if (values.password.length < 8) {
+        errors.password = 'Must be 8 characters or more'
+    }
+    return errors
+}
 
-class SignUpForm extends Component {
-  state = { ...INITIAL_STATE };
-
-  handleChange = ({ target: { name, value } }) => {
-    this.setState({
-      [name]: value
-    });
-  };
-
-  handleSubmit = e => {
-    e.preventDefault();
-
-    this.props.onSubmit({ ...this.state });
-
-    this.setState({ ...INITIAL_STATE });
-  };
-
-  render() {
-    const { email, password } = this.state;
+const  SignUpForm = ({ error, handleSubmit, submitting, sendLoginData }) => {
+    const prepareLoginData = data => {
+        sendLoginData(data);
+    };
 
     return (
-      <Form onSubmit={this.handleSubmit}>
-        <Label text="Email">
-          <Input
-            type="email"
-            name="email"
-            value={email}
-            onChange={this.handleChange}
-            placeholder="example@mail.com"
-          />
-        </Label>
-
-        <Label text="Password">
-          <Input
-            type="password"
-            name="password"
-            value={password}
-            onChange={this.handleChange}
-          />
-        </Label>
-
-        <Button label="Sign up" type="submit" />
-      </Form>
+        <Form onSubmit={handleSubmit(prepareLoginData)}>
+            <Field
+                label="Email"
+                type="email"
+                name="email"
+                placeholder="example@mail.com"
+                component={FormField}
+            />
+            <Field
+                label="Password"
+                type="password"
+                name="password"
+                component={FormField}
+            />
+            {error && <strong>{error}</strong>}
+            <div>
+                <Button label="Sign up" type="submit" disabled={submitting} />
+            </div>
+        </Form>
     );
-  }
 }
 
 const mapDispatch = {
-  onSubmit: operations.signUp
+    sendLoginData: operations.signUp
 };
 
-export default connect(
-  null,
-  mapDispatch
+const SignUpFormRedux = connect(
+    null,
+    mapDispatch
 )(SignUpForm);
+
+export default reduxForm({
+    form: 'login',
+    validate
+})(SignUpFormRedux)
