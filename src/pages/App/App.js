@@ -10,17 +10,17 @@ class App extends Component {
     return (
       <div className="App">
         <Switch>
-          <LoginRoute
-            exact
-            path="/"
-            redirectTo="/users"
-            component={Login}
-          /> 
-          <ProtectedRoute
-            path="/users"
-            redirectTo="/"
-            component={Users}
-          /> 
+            <LoginRoute
+                exact
+                path="/"
+                redirectTo="/users"
+                component={Login}
+            /> 
+            <ProtectedRoute
+                path="/users"
+                redirectTo="/"
+                component={Users}
+            /> 
         </Switch>
       </div>
     );
