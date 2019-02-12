@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form'
-import * as operations from '../../redux/operations';
+import * as actions from '../../redux/actions';
 import Form from '../common/Form';
 import FormField from '../common/FormField';
 import Button from '../common/Button';
@@ -52,7 +52,7 @@ const  SignUpForm = ({ error, handleSubmit, submitting, sendLoginData }) => {
 }
 
 const mapDispatch = {
-    sendLoginData: operations.signUp
+    sendLoginData: actions.signUpSaga
 };
 
 const SignUpFormRedux = connect(

@@ -7,41 +7,56 @@ export const actionTypes = {
     GET_USERS_ERROR: 'session/GET_USERS_ERROR',
     SIGN_OUT_REQUEST: 'session/SIGN_OUT_REQUEST',
     SIGN_OUT_SUCCESS: 'session/SIGN_OUT_SUCCESS',
-    SIGN_OUT_ERROR: 'session/SIGN_OUT_ERROR'
+    SIGN_UP_SAGA: 'session/SIGN_UP_SAGA',
+    GET_USERS_SAGA: 'session/GET_USERS_SAGA',
+    SIGN_OUT_SAGA: 'session/SIGN_OUT_SAGA'
   };
   
-  export const signUpRequest = () => ({
+export const signUpRequest = () => ({
     type: actionTypes.SIGN_UP_REQUEST
-  });
+});
   
-  export const signUpSuccess = data => ({
+export const signUpSuccess = data => ({
     type: actionTypes.SIGN_UP_SUCCESS,
     payload: data
-  });
+});
   
-  export const signUpError = error => ({
+export const signUpError = error => ({
     type: actionTypes.SIGN_UP_ERROR,
     payload: {
-      error
+        error
     }
-  });
-  
-  export const getUsersRequest = () => ({
+});
+
+export const getUsersRequest = () => ({
     type: actionTypes.GET_USERS_REQUEST
-  });
-  
-  export const getUsersSuccess = data => ({
+});
+
+export const getUsersSuccess = data => ({
     type: actionTypes.GET_USERS_SUCCESS,
     payload: data
-  });
-  
-  export const getUsersError = error => ({
+});
+
+export const getUsersError = error => ({
     type: actionTypes.GET_USERS_ERROR,
     payload: {
-      error
+        error
     }
-  });
-  
-  export const signOutRequest = () => ({
+});
+
+export const signOutRequest = () => ({
     type: actionTypes.SIGN_OUT_REQUEST
-  });
+});
+
+export const signUpSaga = (data) =>  ({
+    type: actionTypes.SIGN_UP_SAGA,
+    payload: data
+});
+
+export const getUsersSaga = () =>  ({
+    type: actionTypes.GET_USERS_SAGA
+});
+
+export const signOutSaga= () =>  ({
+    type: actionTypes.SIGN_OUT_SAGA
+});
