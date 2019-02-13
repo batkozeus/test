@@ -1,10 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Field, reduxForm } from 'redux-form'
+import { Field, reduxForm, formValueSelector, change } from 'redux-form'
 import * as operations from '../../redux/operations';
 import Form from '../common/Form';
 import FormField from '../common/FormField';
 import Button from '../common/Button';
+
+const selector = formValueSelector('login');
 
 const validate = values => {
     const errors = {}
@@ -23,13 +25,37 @@ const validate = values => {
     return errors
 }
 
-const  SignUpForm = ({ error, handleSubmit, submitting, sendLoginData }) => {
+
+// const normalizeNumber = field => (value, previousValue, allValues) =>
+// value * allValues[field]
+
+const  SignUpForm = ({ error, handleSubmit, submitting, sendLoginData, initialNumberValue, dispatch }) => {
     const prepareLoginData = data => {
         sendLoginData(data);
     };
 
+    const initialChange = (event) => {
+        dispatch(change('login', 'multiplnumber', event.target.value));
+    }
+
     return (
         <Form onSubmit={handleSubmit(prepareLoginData)}>
+            <Field
+                label="InitialNumber"
+                type="text"
+                name="initialnumber"
+                placeholder="initialnumber"
+                component={FormField}
+                onChange={initialChange}
+            />
+            <Field
+                label="MultiplyNumber"
+                type="text"
+                name="multiplnumber"
+                placeholder="multiplnumber"
+                component={FormField}
+                // normalize={normalizeNumber('initialnumber')}
+            />
             <Field
                 label="Email"
                 type="email"
@@ -51,12 +77,16 @@ const  SignUpForm = ({ error, handleSubmit, submitting, sendLoginData }) => {
     );
 }
 
+const mapState = state => ({
+    initialNumberValue: selector(state, 'initialnumber')
+})
+
 const mapDispatch = {
     sendLoginData: operations.signUp
 };
 
 const SignUpFormRedux = connect(
-    null,
+    mapState,
     mapDispatch
 )(SignUpForm);
 
