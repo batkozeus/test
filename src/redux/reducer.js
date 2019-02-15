@@ -8,7 +8,7 @@ const users = (state = [], { type, payload }) => {
       return payload;
 
     case actionTypes.GET_USERS_ERROR:
-      return [];
+      return payload;
 
     default:
       return state;
@@ -19,7 +19,7 @@ const isAuthenticated = (state = false, { type }) => {
   switch (type) {
     case actionTypes.SIGN_UP_SUCCESS:
       return true;
-
+    
     case actionTypes.SIGN_UP_ERROR:
     case actionTypes.SIGN_OUT_REQUEST:
       return false;
@@ -29,8 +29,20 @@ const isAuthenticated = (state = false, { type }) => {
   }
 };
 
+const error = (state = false,  { type, payload }) => {
+  switch (type) {
+    case actionTypes.SIGN_UP_ERROR:
+    case actionTypes.GET_USERS_ERROR:
+      return true;
+
+    default:
+      return state;
+  }
+};
+
 export default combineReducers({
   users,
   isAuthenticated,
+  error,
   form: formReducer
 });

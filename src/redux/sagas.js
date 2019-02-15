@@ -1,40 +1,55 @@
 import { put, call, takeEvery, all } from 'redux-saga/effects'
 import axios from 'axios';
 import {
-    signUpRequest,
-    signUpSuccess,
-    signUpError,
-    getUsersRequest,
-    getUsersSuccess,
-    getUsersError,
-    signOutRequest,
     actionTypes
 } from './actions';
 
 axios.defaults.baseURL = 'https://reqres.in';
 
 function* signUp (credentials) {
-    yield put(signUpRequest());
+    yield put({
+        type: actionTypes.SIGN_UP_REQUEST
+    });
     try {
         const loginData = yield call(axios.get, 'api/register', credentials.payload);
-        yield put(signUpSuccess(loginData));
+        yield put({
+            type: actionTypes.SIGN_UP_SUCCESS,
+            payload: loginData
+        });
     } catch (error) {
-        yield put(signUpError(error));
+        yield put({
+            type: actionTypes.SIGN_UP_ERROR,
+            payload: {
+                error
+            }
+        });
     }
 };
 
 function* getUsers () {
-    yield put(getUsersRequest());
+    yield put({
+        type: actionTypes.GET_USERS_REQUEST
+    });
     try {
         const userData = yield call(axios.get, '/api/users?page=2');
-        yield put(getUsersSuccess(userData.data.data));
+        yield put({
+            type: actionTypes.GET_USERS_SUCCESS,
+            payload: userData.data.data
+        });
     } catch (error) {
-        yield put(getUsersError(error));
+        yield put({
+            type: actionTypes.GET_USERS_ERROR,
+            payload: {
+                error
+            }
+        });
     }
 };
 
 function* signOut () {
-    yield put(signOutRequest());
+    yield put({
+        type: actionTypes.SIGN_OUT_REQUEST
+    });
 };
 
 export function* watchSignUp() {
