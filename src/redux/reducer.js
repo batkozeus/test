@@ -29,7 +29,7 @@ const isAuthenticated = (state = false, { type }) => {
   }
 };
 
-const error = (state = false,  { type, payload }) => {
+const error = (state = false,  { type }) => {
   switch (type) {
     case actionTypes.SIGN_UP_ERROR:
     case actionTypes.GET_USERS_ERROR:
@@ -40,9 +40,30 @@ const error = (state = false,  { type, payload }) => {
   }
 };
 
+const modalInitialState = {
+  modalType: null,
+  modalProps: {}
+}
+
+const modal = (state = modalInitialState, { type, modalProps, modalType }) => {
+  switch (type) {
+    case actionTypes.SHOW_MODAL:
+      return {
+        modalProps: modalProps,
+        modalType: modalType,
+        type: type
+      }
+    case actionTypes.HIDE_MODAL:
+      return modalInitialState
+    default:
+      return state
+  }
+}
+
 export default combineReducers({
   users,
   isAuthenticated,
   error,
+  modal,
   form: formReducer
 });
