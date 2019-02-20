@@ -1,22 +1,30 @@
 import React from 'react';
-import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import cx from 'classnames'
+import globalStyles from 'assets/global-styles/bootstrap.min.module.css';
+import Button from '../../common/Button';
 
 const AlertModal = ({ closeModal, title, message }) => {
   return (
-    <div className="modal-content">
-      <div className="modal-header">
-        <h5
-          className="modal-title"
-        >{title}</h5>
-        <button type="button" className="close" aria-label="Close" onClick={closeModal}>
-          <span aria-hidden="true">&times;</span>
-        </button>
+    <div className={globalStyles['modal-content']}>
+      <div className={globalStyles['modal-header']}>
+        <h5 className={globalStyles['modal-title']}>
+          {title}
+        </h5>
+        <Button
+          BtnClass={globalStyles.close}
+          label="&times;"
+          onClick={closeModal}
+        />
       </div>
-      <div className="modal-body">
+      <div className={globalStyles['modal-body']}>
         <p>{message}</p>
       </div>
-      <div className="modal-footer">
-        <button type="button" className="btn btn-secondary" onClick={closeModal}>close</button>
+      <div className={globalStyles['modal-footer']}>
+        <Button
+          BtnClass={cx(globalStyles.btn, globalStyles['btn-secondary'])}
+          label="close"
+          onClick={closeModal}
+        />
       </div>
     </div>
   )

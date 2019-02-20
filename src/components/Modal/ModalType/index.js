@@ -1,7 +1,7 @@
 import alertModal from './AlertModal'
 
 const modalTypes = {
-  alertModal
+  'alert': alertModal
 }
 
 export default modalTypes

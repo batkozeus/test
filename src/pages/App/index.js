@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { Switch } from 'react-router-dom';
 import LoginRoute from '../../components/LoginRoute';
 import ProtectedRoute from '../../components/ProtectedRoute';
-import Login from '../../pages/Login';
-import Users from '../../pages/Users';
-
+import Login from 'pages/Login';
+import Users from 'pages/Users';
+import ModalContainer from 'components/Modal/ModalContainer';
 class App extends Component {
   render() {
     return (
@@ -22,6 +22,7 @@ class App extends Component {
             component={Users}
           /> 
         </Switch>
+        <ModalContainer />
       </div>
     );
   }

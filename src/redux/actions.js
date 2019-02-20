@@ -17,20 +17,20 @@ export const actionTypes = keyMirror({
   SHOW_MODAL: null
 });
   
-export const signUpSaga = (data) =>  ({
+export const signUpSaga = (data) => ({
   type: actionTypes.SIGN_UP_SAGA,
   payload: data
 });
 
-export const getUsersSaga = () =>  ({
+export const getUsersSaga = () => ({
   type: actionTypes.GET_USERS_SAGA
 });
 
-export const signOutSaga= () =>  ({
+export const signOutSaga= () => ({
   type: actionTypes.SIGN_OUT_SAGA
 });
 
-export const showModal = ({ modalProps, modalType }) => ({
+export const showModal = ( modalProps, modalType ) => ({
   type: actionTypes.SHOW_MODAL,
   modalProps,
   modalType
