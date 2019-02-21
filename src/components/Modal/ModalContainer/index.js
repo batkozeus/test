@@ -11,8 +11,6 @@ class ModalContainer extends React.Component {
   };
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    console.log('nextProps: ', nextProps.modalProps.open)
-    console.log('prevState: ', prevState.modalIsOpen)
     if (nextProps.modalProps.open !== prevState.modalIsOpen) {
       return {modalIsOpen: nextProps.modalProps.open};
     }
@@ -33,7 +31,7 @@ class ModalContainer extends React.Component {
     return (
       <div>
         <ReactModal
-          isOpen={true}
+          isOpen={this.state.modalIsOpen}
           onRequestClose={this.closeModal}
           contentLabel="Example Modal"
           ariaHideApp={false}
@@ -42,7 +40,6 @@ class ModalContainer extends React.Component {
           className={cx(globalStyles['modal-dialog'], globalStyles['modal-dialog-centered'])}
         >
           <SpecifiedModal
-            closeModal={this.closeModal}
             {...this.props.modalProps}
           />
         </ReactModal>
